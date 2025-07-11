@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Finder App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/1046/1046750.png" alt="Chef Logo" class="logo">
+    <h1>Recipe Finder 🍳</h1>
+  </header>
+  
+  <main>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search recipes by name or ingredient..." />
+      <button id="searchBtn">🔍 Search</button>
+      <button id="clearBtn">❌ Clear</button>
+    </div>
+
+    <div class="filters">
+      <select id="categoryFilter">
+        <option value="">Filter by Category</option>
+      </select>
+      <select id="cuisineFilter">
+        <option value="">Filter by Cuisine</option>
+      </select>
+    </div>
+
+    <h2>Recipes</h2>
+    <div id="recipes" class="recipe-list"></div>
+
+    <h2>Favorite Recipes ❤️</h2>
+    <div id="favorites" class="recipe-list"></div>
+
+    <div id="recipeDetails" class="recipe-details"></div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ using TheMealDB API</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
