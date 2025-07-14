@@ -11,7 +11,6 @@ const cuisineFilter = document.getElementById('cuisineFilter');
 
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-// Load categories & cuisines
 async function loadFilters() {
   const categoriesRes = await fetch(API_BASE + "list.php?c=list");
   const categories = (await categoriesRes.json()).meals;
@@ -32,7 +31,6 @@ async function loadFilters() {
   });
 }
 
-// Fetch recipes
 async function fetchRecipes(query = "", filterType = "", filterValue = "") {
   let url = API_BASE + "search.php?s=" + query;
   if (filterType === "category") {
@@ -46,7 +44,6 @@ async function fetchRecipes(query = "", filterType = "", filterValue = "") {
   displayRecipes(data.meals || []);
 }
 
-// Display recipe cards
 function displayRecipes(recipes) {
   recipesContainer.innerHTML = recipes.map(recipe => `
     <div class="recipe-card">
@@ -58,7 +55,6 @@ function displayRecipes(recipes) {
   `).join('');
 }
 
-// Show recipe details
 async function showRecipeDetails(id) {
   const res = await fetch(API_BASE + "lookup.php?i=" + id);
   const meal = (await res.json()).meals[0];
@@ -80,7 +76,6 @@ async function showRecipeDetails(id) {
   `;
 }
 
-// Favorites
 function toggleFavorite(id, name, img) {
   const exists = favorites.find(f => f.id === id);
   if (exists) {
@@ -108,7 +103,6 @@ function displayFavorites() {
   `).join('');
 }
 
-// Event listeners
 searchBtn.addEventListener('click', () => fetchRecipes(searchInput.value));
 clearBtn.addEventListener('click', () => {
   searchInput.value = '';
@@ -118,6 +112,5 @@ clearBtn.addEventListener('click', () => {
 categoryFilter.addEventListener('change', () => fetchRecipes("", "category", categoryFilter.value));
 cuisineFilter.addEventListener('change', () => fetchRecipes("", "cuisine", cuisineFilter.value));
 
-// Initial load
 loadFilters();
 displayFavorites();
